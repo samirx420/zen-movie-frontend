@@ -4,15 +4,52 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+// interceptors
+import { URLInterceptor } from './@core/interceptors/url.interceptor';
+import { JwtInterceptor } from './@core/interceptors/jwt.interceptor';
+
+
+// ngrx imports
+import { StoreModule, MetaReducer } from '@ngrx/store';
+import { EffectsModule }            from '@ngrx/effects';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
+
+import { reducers, effects, CustomSerializer } from "./@store/router-store";
+import { environment } from '../environments/environment';
+
+// not used in production
+import { StoreDevtoolsModule }  from '@ngrx/store-devtools';
+import { storeFreeze }          from 'ngrx-store-freeze';
+
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+
+    // NGRX MODULES
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects),
+    StoreRouterConnectingModule.forRoot(),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
-  providers: [],
+  providers: [
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    { provide: HTTP_INTERCEPTORS    , useClass: URLInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
