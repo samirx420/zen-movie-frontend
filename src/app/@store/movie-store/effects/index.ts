@@ -1,7 +1,7 @@
-// import { ParentsEffects } from './parent.effects';
+import { MovieEffects } from './movie.effects';
 
-// export const effects: any[] = [
-//     ParentsEffects
-// ];
+export const effects: any[] = [
+    MovieEffects
+];
 
-// export * from './parent.effects';
+export * from './movie.effects';

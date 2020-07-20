@@ -1,6 +1,6 @@
-import { FormComponent } from "./form/form.component";
-export const components: any[] =[
-    FormComponent
+import { MovieCardComponent } from "./movie-card/movie-card.component";
+export const components:any[] =[
+    MovieCardComponent
 ];
 
-export * from './form/form.component';
+export * from './movie-card/movie-card.component';

@@ -7,9 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class URLInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // const url = 'https://my-json-server.typicode.com/sanskarsakya/gittest';
-    const url = 'https://pz-school.herokuapp.com'
-    // const url = 'https://localhost:3000'
+    const url = 'http://localhost:3000'
     req = req.clone({
       url: url + req.url
     });

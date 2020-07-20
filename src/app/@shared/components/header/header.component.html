@@ -1,0 +1,10 @@
+<div>
+  <ul>
+      <li *ngIf="user$" [routerLink]="['profile']">Profile</li>
+      <li *ngIf="user$" [routerLink]="['']">Home</li>
+      <li *ngIf="!user$" [routerLink]="['login']">Login</li>
+      <li *ngIf="!user$" [routerLink]="['register']">Register</li>
+      <li *ngIf="user$"><a (click)="logout()">Logout</a></li>
+  </ul>
+</div>
+<h1>Movies</h1>

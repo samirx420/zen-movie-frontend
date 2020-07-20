@@ -9,6 +9,7 @@ import * as fromContainers from './containers';
 
 // COMPONENTS
 import * as fromComponents from './components';
+import { HeaderModule } from 'src/app/@shared/components/header/header.module';
 
 // STORE
 import { MovieStoreModule } from '../../@store/movie-store/movie-store.module';
@@ -29,6 +30,7 @@ export const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     MovieStoreModule,
     WatchListStoreModule,
+    HeaderModule,
   ]
 })
 export class LandingModule { }

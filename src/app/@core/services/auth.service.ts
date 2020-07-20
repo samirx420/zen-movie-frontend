@@ -23,12 +23,12 @@ export class AuthService {
 
   getMyDetail(): Observable<any> {
     return this.http
-      .get<any>(`https://pz-job-portal.herokuapp.com/api/v1/users/me`)
+      .get<any>(`/api/v1/users/me`)
       .pipe(catchError((error: any) => throwError(error)));
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`http://pz-job-portal.herokuapp.com/api/v1/users/login`, { username, password })
+    return this.http.post<any>(`/api/v1/users/login`, { username, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -46,7 +46,7 @@ export class AuthService {
       formData.append('avatar', fileToUpload);
     }
 
-    return this.http.post<any>(`http://pz-job-portal.herokuapp.com/api/v1/users/register`, formData)
+    return this.http.post<any>(`/api/v1/users/register`, formData)
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));

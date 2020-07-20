@@ -10,13 +10,7 @@ export interface MovieState {
 }
 
 export const initialState: MovieState = {
-    entities: {
-        1: {
-            id:1,
-            title:'test',
-            description:'description',
-        }
-    },
+    entities: {},
     loading: false,
     loaded : false,
 };

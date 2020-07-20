@@ -10,6 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { URLInterceptor } from './@core/interceptors/url.interceptor';
 import { JwtInterceptor } from './@core/interceptors/jwt.interceptor';
 
+// components
+import { HeaderModule } from "./@shared/components/header/header.module";
 
 // ngrx imports
 import { StoreModule, MetaReducer } from '@ngrx/store';
@@ -38,6 +40,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    HeaderModule,
 
     // NGRX MODULES
     StoreModule.forRoot(reducers, { metaReducers }),

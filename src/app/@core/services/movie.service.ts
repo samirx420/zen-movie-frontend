@@ -4,32 +4,31 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError }       from 'rxjs/operators';
 
-import { Parent }          from '../models/parent.model';
+import { Movie }          from '../models/movie.model';
 import { ResponseWrapper }  from '../models/response.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ParentService {
+export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  getParents(): Observable<ResponseWrapper<Parent>> {
+  getMovies(): Observable<ResponseWrapper<Movie>> {
     return this.http
-      .get<ResponseWrapper<Parent>>(`/api/v1/parents`)
+      .get<ResponseWrapper<Movie>>(`/api/v1/movies`)
       .pipe(catchError((error: any) => throwError(error)));
   }
 
-  createParent(payload: Parent): Observable<Parent> {
+  createMovie(payload: Movie): Observable<Movie> {
     return this.http
-      .post<Parent>(`/api/v1/parents`, payload)
+      .post<Movie>(`/api/v1/movies`, payload)
       .pipe(catchError((error: any) => throwError(error)));
   }
 
-  updateParent(payload: Parent): Observable<Parent> {
-    console.log('service payload', payload);
+  updateMovie(payload: Movie): Observable<Movie> {
     return this.http
-      .put<Parent>(`/api/v1/services/${payload.id}`, payload)
+      .put<Movie>(`/api/v1/movies/${payload.id}`, payload)
       .pipe(catchError((error: any) => throwError(error)));
   }    
 }

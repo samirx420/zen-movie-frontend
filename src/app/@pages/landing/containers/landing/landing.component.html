@@ -1,14 +1,6 @@
-<movie-form [isEdit]="isEdit" [movie]="model" (create)="onCreate($event)"
-(update)="onUpdate($event)">q
-</movie-form>
+
+<header></header>
 <ul *ngIf="movies$">
-   <li (click)="showAddForm()">
-       New
-   </li> 
-   <li *ngFor="let movie of movies$">
-       {{movie.title}} 
-       <button (click)="showEditForm(movie)">Edit</button>
-       <button (click)="addToWatchList(movie)" *ngIf="!movie.is_in_watchlist">Add to watchlist</button>
-       <button (click)="removeFromWatchList(movie)" *ngIf="movie.is_in_watchlist">Remove from watchlist</button>
-   </li> 
+    <movie-card *ngFor="let movie of movies$" [movie]='movie' (addToWatchlist)="addToWatchList($event)"
+        (removeFromWatchList)="removeFromWatchList($event)"></movie-card>
 </ul>

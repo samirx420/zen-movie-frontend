@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 
 // RXJS
@@ -9,22 +10,23 @@ import { Movie } from 'src/app/@core/models/movie.model';
 
 // STORES
 import { Store } from '@ngrx/store';
-import * as fromMovieStore from '../../../../@store/movie-store';
-import * as fromWatchlistStore from '../../../../@store/watchlist-store';
-import { AuthService } from 'src/app/@core/services';
-import { Router } from '@angular/router';
+import * as fromMovieStore from '../../../../../@store/movie-store';
+import * as fromWatchlistStore from '../../../../../@store/watchlist-store';
 
 @Component({
-  selector   : 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls  : ['./landing.component.scss']
+  selector: 'app-movie',
+  templateUrl: './movie.component.html',
+  styleUrls: ['./movie.component.css']
 })
-export class LandingComponent implements OnInit {
+export class MovieComponent implements OnInit {
 
   movies$ : Movie[];
   paged$  : Observable<paged>;
   loading$: Observable<boolean>;
-  user$   : any;
+
+  model     : Movie = {};
+  isEdit    : boolean;
+  showDetail: boolean;
 
   paged: paged = {
     page    : 1,
@@ -34,13 +36,9 @@ export class LandingComponent implements OnInit {
   constructor(
     private movieStore: Store<fromMovieStore.MovieState>,
     private watchlistStore: Store<fromWatchlistStore.WatchlistState>,
-    private authService: AuthService,
-    private router: Router,
   ) { }
 
   ngOnInit() {
-    this.user$ = this.authService.currentUserValue;
-
     this.movieStore.dispatch(fromMovieStore.LoadMovie());
 
     // this.movies$  = 
@@ -48,11 +46,27 @@ export class LandingComponent implements OnInit {
     this.loading$ = this.movieStore.select(fromMovieStore.getMoviesLoading);
   }
 
+  public showEditForm(model) {
+    this.isEdit     = true;
+    this.model      = model;
+    this.showDetail = true;
+  }
+
+  public showAddForm() {
+    this.isEdit     = false;
+    this.showDetail = true;
+  }
+
+  onCreate(event) {
+    // event = {...event, id: this.movies$.length + 1}
+    this.movieStore.dispatch(fromMovieStore.CreateMovie({ payload: event }));
+  }
+
+  onUpdate(event: Movie) {
+    this.movieStore.dispatch(fromMovieStore.UpdateMovie({ payload: event }));
+  }
+
   addToWatchList(event: Movie){
-    if(!this.user$){
-      this.router.navigate(['/login']);
-      return;
-    }
     this.watchlistStore.dispatch(fromWatchlistStore.AddToWatchlistSuccess({ payload: event }));
     event = {...event, is_in_watchlist: true};
     this.movieStore.dispatch(fromMovieStore.UpdateMovieSuccess({ payload: event }));
@@ -69,5 +83,8 @@ export class LandingComponent implements OnInit {
     // this.teacherStore.dispatch(new fromTeacherStore.LoadTeacher({ paged: this.paged }));
   }
 
-
+  hideDetail() {
+    this.showDetail = false;
+  }
 }
+

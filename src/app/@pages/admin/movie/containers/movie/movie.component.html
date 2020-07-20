@@ -1,0 +1,11 @@
+<movie-form [isEdit]="isEdit" [movie]="model" (create)="onCreate($event)" (update)="onUpdate($event)">
+</movie-form>
+<ul *ngIf="movies$">
+  <button class="bg-red-500 px-2 py-1 rounded text-xs text-white" (click)="showAddForm()">
+    New
+  </button>
+  <li *ngFor="let movie of movies$">
+    {{movie.title}}
+    <button class="bg-red-500 px-2 py-1 rounded text-xs text-white mr-2" (click)="showEditForm(movie)">Edit</button>
+  </li>
+</ul>

@@ -1,0 +1,9 @@
+<div>
+  <p class="inline-block">
+    {{movie.title}}
+  </p>
+  <button class="bg-red-500 px-2 py-1 rounded text-xs text-white" (click)="_addToWatchlist(movie)"
+    *ngIf="!movie.is_in_watchlist">Add to watchlist</button>
+  <button class="bg-red-500 px-2 py-1 rounded text-xs text-white" (click)="_removeFromWatchList(movie)"
+    *ngIf="movie.is_in_watchlist">Remove from watchlist</button>
+</div>
