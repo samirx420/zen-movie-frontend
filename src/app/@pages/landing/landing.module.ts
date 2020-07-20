@@ -13,12 +13,15 @@ import { HeaderModule } from 'src/app/@shared/components/header/header.module';
 
 // STORE
 import { MovieStoreModule } from '../../@store/movie-store/movie-store.module';
-import { WatchListStoreModule } from '../../@store/watchlist-store/watchlist-store.module';
 
 export const ROUTES: Routes = [
   {
     path: '',
     component: fromContainers.LandingComponent
+  },
+  {
+    path: ':id',
+    component: fromContainers.DetailComponent
   }
 ]
 
@@ -29,7 +32,6 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
     MovieStoreModule,
-    // WatchListStoreModule,
     HeaderModule,
   ]
 })

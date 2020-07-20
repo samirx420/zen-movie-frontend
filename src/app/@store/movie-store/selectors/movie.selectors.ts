@@ -20,6 +20,11 @@ export const getMovies = createSelector(
     }
 );
 
+export const getMovie = createSelector(
+    getMoviesState,
+    fromMovie.getMovieEntitiy
+);
+
 export const getMoviesLoaded = createSelector(
     getMoviesState,
     fromMovie.getMovieLoaded

@@ -1,6 +1,7 @@
 
-<header></header>
+  <h1>Movies</h1>
+  
 <ul *ngIf="movies$">
-    <movie-card *ngFor="let movie of movies$" [movie]='movie' (addToWatchlist)="addToWatchList($event)"
+    <movie-card *ngFor="let movie of movies$" [routerLink]="['/', movie.id]"  [movie]='movie' (addToWatchlist)="addToWatchList($event)"
         (removeFromWatchList)="removeFromWatchList($event)"></movie-card>
 </ul>

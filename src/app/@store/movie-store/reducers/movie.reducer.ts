@@ -5,14 +5,16 @@ import { Movie } from '../../../@core/models/movie.model';
 
 export interface MovieState {
     entities: { [id: number]: Movie };
+    entity  : Movie,
     loading : boolean;
     loaded  : boolean;
 }
 
 export const initialState: MovieState = {
     entities: {},
-    loading: false,
-    loaded : false,
+    entity  : {},
+    loading : false,
+    loaded  : false,
 };
 
 const movieReducer = createReducer(
@@ -37,6 +39,17 @@ const movieReducer = createReducer(
         };
     }),
     on(fromMovie.LoadMovieFail, state => ({ ...state, loading: false, loaded: false, })),
+    on(fromMovie.LoadMovieDetailSuccess, (state, payload) => {
+        const entity = payload;
+
+
+        return {
+            ...state,
+            loading: false,
+            loaded : true,
+            entity,
+        };
+    }),
     on(fromMovie.CreateMovieSuccess, (state, { payload }) => {
         console.log(payload);
         const entities = {
@@ -65,7 +78,7 @@ const movieReducer = createReducer(
 
         const entities = {
             ...state.entities,
-            [payload.id]: {...payload, is_in_watchlist: true}
+            [payload.id]: { ...payload, is_in_watchlist: true }
         };
 
         return {
@@ -77,7 +90,7 @@ const movieReducer = createReducer(
 
         const entities = {
             ...state.entities,
-            [payload.id]: {...payload, is_in_watchlist: false}
+            [payload.id]: { ...payload, is_in_watchlist: false }
         };
 
         return {
@@ -92,5 +105,6 @@ export function reducer(state: MovieState | undefined, action: Action) {
 }
 
 export const getMovieEntities = (state: MovieState) => state.entities;
+export const getMovieEntitiy  = (state: MovieState) => state.entity;
 export const getMovieLoading  = (state: MovieState) => state.loading;
 export const getMovieLoaded   = (state: MovieState) => state.loaded;

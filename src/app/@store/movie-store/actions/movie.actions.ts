@@ -23,6 +23,26 @@ export const LoadMovieFail = createAction(
     props<{payload: any}>()
 );
 
+// load movie detail
+export const LOAD_MOVIE_DETAIL          = '[Movie] Load Movie Detail';
+export const LOAD_MOVIE_DETAIL_SUCCESS  = '[Movie] Load Movie Detail Success';
+export const LOAD_MOVIE_DETAIL_FAIL     = '[Movie] Load Movie Detail Fail';
+
+export const LoadMovieDetail = createAction(
+    LOAD_MOVIE_DETAIL,
+    props<{movieId: number}>()
+);
+
+export const LoadMovieDetailSuccess = createAction(
+    LOAD_MOVIE_DETAIL_SUCCESS,
+    props<Movie>()
+);
+
+export const LoadMovieDetailFail = createAction(
+    LOAD_MOVIE_DETAIL_FAIL,
+    props<{payload: any}>()
+);
+
 // create movie.
 export const CREATE_MOVIE            = '[Movie] Create Movie';
 export const CREATE_MOVIE_SUCCESS    = '[Movie] Create Movie Success';

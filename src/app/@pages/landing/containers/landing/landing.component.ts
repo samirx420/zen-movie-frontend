@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // RXJS
 import { Observable } from 'rxjs';
@@ -6,14 +7,15 @@ import { Observable } from 'rxjs';
 // MODELS
 import { paged } from 'src/app/@core/models/paged.model';
 import { Movie } from 'src/app/@core/models/movie.model';
+import { Watchlist } from 'src/app/@core/models/watchlist.model';
+
+// services
+import { AuthService } from 'src/app/@core/services';
 
 // STORES
 import { Store } from '@ngrx/store';
 import * as fromMovieStore from '../../../../@store/movie-store';
 import * as fromWatchlistStore from '../../../../@store/watchlist-store';
-import { AuthService } from 'src/app/@core/services';
-import { Router } from '@angular/router';
-import { Watchlist } from 'src/app/@core/models/watchlist.model';
 
 @Component({
   selector   : 'app-landing',
@@ -34,7 +36,7 @@ export class LandingComponent implements OnInit {
 
   constructor(
     private movieStore: Store<fromMovieStore.MovieState>,
-    private watchlistStore: Store<fromWatchlistStore.WatchlistState>,
+    // private watchlistStore: Store<fromWatchlistStore.WatchlistState>,
     private authService: AuthService,
     private router: Router,
   ) { }
@@ -68,6 +70,13 @@ export class LandingComponent implements OnInit {
   changePage(page: number) {
     this.paged = { ...this.paged, page };
     // this.teacherStore.dispatch(new fromTeacherStore.LoadTeacher({ paged: this.paged }));
+  }
+
+  
+  
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 

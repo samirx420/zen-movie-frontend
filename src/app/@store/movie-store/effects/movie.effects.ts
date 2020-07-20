@@ -7,6 +7,7 @@ import { map, switchMap, catchError }   from 'rxjs/operators';
 
 import * as movieActions   from '../actions/movie.actions';
 import * as fromServices    from '../../../@core/services';
+import { dispatch } from 'rxjs/internal/observable/pairs';
 
 @Injectable()
 export class MovieEffects {
@@ -16,7 +17,6 @@ export class MovieEffects {
         private watchlistService: fromServices.WatchlistService,
     ) { }
 
-    @Effect()
     loadMovies$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.LOAD_MOVIE),
@@ -31,9 +31,24 @@ export class MovieEffects {
             )
         )
     );
+    
+    loadMovieDetail$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(movieActions.LOAD_MOVIE_DETAIL),
+            switchMap(({ movieId }) => {
+                console.log('payload', movieId)
+                return this.movieService
+                    .getMovieDetail(movieId)
+                    .pipe(
+                        map(movie => movieActions.LoadMovieDetailSuccess(movie)),
+                        catchError(error => of(movieActions.LoadMovieDetailFail(error)))
+                    )
+            }
+            )
+        )
+    );
 
-    @Effect()
-    createService$ = createEffect(() =>
+    createMovie$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.CREATE_MOVIE),
             switchMap(({payload}) => {

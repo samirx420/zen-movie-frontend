@@ -19,6 +19,12 @@ export class MovieService {
       .get<ResponseWrapper<Movie>>(`/api/v1/movies`)
       .pipe(catchError((error: any) => throwError(error)));
   }
+  
+  getMovieDetail(movieId: number): Observable<Movie> {
+    return this.http
+      .get<Movie>(`/api/v1/movies/${movieId}`)
+      .pipe(catchError((error: any) => throwError(error)));
+  }
 
   createMovie(payload: Movie): Observable<Movie> {
     return this.http
