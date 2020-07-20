@@ -7,6 +7,7 @@ import * as fromContainers from './containers';
 
 // COMPONENTS
 import * as fromComponents from './components';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 
 // STORES
 import { MovieStoreModule } from 'src/app/@store/movie-store/movie-store.module';
@@ -22,6 +23,7 @@ export const ROUTES: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    NzDrawerModule,
     RouterModule.forChild(ROUTES),
     MovieStoreModule
   ],

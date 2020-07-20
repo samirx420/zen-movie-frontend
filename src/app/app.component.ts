@@ -11,7 +11,7 @@ import { AuthService } from './@core/services';
 })
 export class AppComponent {
   title = 'zen-movie';
-  user$   : any;
+  user$: any;
 
   constructor(
     private authService: AuthService,
@@ -19,9 +19,11 @@ export class AppComponent {
   ) { }
 
   ngOnInit() {
-    this.user$ = this.authService.currentUserValue;
+    this.authService.currentUser.subscribe(d => {
+      this.user$ = d;
+    });
   }
-  
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

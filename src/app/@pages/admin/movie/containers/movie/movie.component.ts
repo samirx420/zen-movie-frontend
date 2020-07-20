@@ -19,11 +19,11 @@ import * as fromWatchlistStore from '../../../../../@store/watchlist-store';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-
   movies$ : Movie[];
   paged$  : Observable<paged>;
   loading$: Observable<boolean>;
-
+  
+  visible   : boolean = false;
   model     : Movie = {};
   isEdit    : boolean;
   showDetail: boolean;
@@ -59,10 +59,12 @@ export class MovieComponent implements OnInit {
 
   onCreate(event) {
     // event = {...event, id: this.movies$.length + 1}
+    this.visible = false;
     this.movieStore.dispatch(fromMovieStore.CreateMovie({ payload: event }));
   }
 
   onUpdate(event: Movie) {
+    this.visible = false;
     this.movieStore.dispatch(fromMovieStore.UpdateMovie({ payload: event }));
   }
 
@@ -85,6 +87,23 @@ export class MovieComponent implements OnInit {
 
   hideDetail() {
     this.showDetail = false;
+  }
+  
+  open(): void {
+    this.visible    = true;
+    this.isEdit     = false;
+    this.showDetail = true;
+  }
+
+  close(): void {
+    this.visible = false;
+  }
+
+  editClick(movie: Movie){
+    this.isEdit     = true;
+    this.visible    = true;
+    this.model      = movie;
+    this.showDetail = true;
   }
 }
 

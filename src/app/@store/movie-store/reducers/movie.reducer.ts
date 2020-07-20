@@ -5,16 +5,18 @@ import { Movie } from '../../../@core/models/movie.model';
 
 export interface MovieState {
     entities: { [id: number]: Movie };
+    watchlist: { [id: number]: Movie };
     entity  : Movie,
     loading : boolean;
     loaded  : boolean;
 }
 
 export const initialState: MovieState = {
-    entities: {},
-    entity  : {},
-    loading : false,
-    loaded  : false,
+    entities : {},
+    watchlist: {},
+    entity   : {},
+    loading  : false,
+    loaded   : false,
 };
 
 const movieReducer = createReducer(
@@ -74,6 +76,24 @@ const movieReducer = createReducer(
             entities
         }
     }),
+    on(fromMovie.LoadWatchlistSuccess, (state, payload) => {
+        const watchlist = payload.data.reduce(
+            (watchlist: { [id: number]: Movie }, movie: Movie) => {
+                return {
+                    ...watchlist,
+                    [movie.id]: movie,
+                };
+            },
+            {}
+        );
+
+        return {
+            ...state,
+            loading: false,
+            loaded : true,
+            watchlist,
+        };
+    }),
     on(fromMovie.AddToWatchlistSuccess, (state, { payload }) => {
 
         const entities = {
@@ -81,9 +101,12 @@ const movieReducer = createReducer(
             [payload.id]: { ...payload, is_in_watchlist: true }
         };
 
+        const entity = { ...state.entity, is_in_watchlist: true }
+
         return {
             ...state,
-            entities
+            entities,
+            entity
         }
     }),
     on(fromMovie.RemoveFromWatchlist, (state, { payload }) => {
@@ -93,9 +116,15 @@ const movieReducer = createReducer(
             [payload.id]: { ...payload, is_in_watchlist: false }
         };
 
+        const entity = { ...state.entity, is_in_watchlist: false }
+
+        const { [payload.id]: removed, ...watchlist } = state.watchlist;
+
         return {
             ...state,
-            entities
+            entities,
+            entity,
+            watchlist
         }
     })
 );
@@ -104,7 +133,8 @@ export function reducer(state: MovieState | undefined, action: Action) {
     return movieReducer(state, action);
 }
 
-export const getMovieEntities = (state: MovieState) => state.entities;
-export const getMovieEntitiy  = (state: MovieState) => state.entity;
-export const getMovieLoading  = (state: MovieState) => state.loading;
-export const getMovieLoaded   = (state: MovieState) => state.loaded;
+export const getMovieEntities  = (state: MovieState) => state.entities;
+export const getMovieEntitiy   = (state: MovieState) => state.entity;
+export const getMovieWatchlist = (state: MovieState) => state.watchlist;
+export const getMovieLoading   = (state: MovieState) => state.loading;
+export const getMovieLoaded    = (state: MovieState) => state.loaded;

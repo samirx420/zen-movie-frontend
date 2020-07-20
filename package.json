@@ -23,6 +23,7 @@
     "@ngrx/router-store": "^9.2.0",
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
+    "ng-zorro-antd": "^9.3.0",
     "ngrx-store-freeze": "^0.2.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

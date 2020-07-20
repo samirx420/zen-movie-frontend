@@ -4,6 +4,11 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path        : '',
+    redirectTo: '/movie',
+    pathMatch: 'full'
+  },
+  {
+    path        : 'movie',
     loadChildren: () => import('./@pages/landing/landing.module').then(m => m.LandingModule),
   },
   {

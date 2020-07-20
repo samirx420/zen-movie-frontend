@@ -2,19 +2,21 @@ import { Injectable } from '@angular/core';
 
 import { Effect, Actions, ofType, createEffect } from '@ngrx/effects';
 
-import { of }                           from 'rxjs';
-import { map, switchMap, catchError }   from 'rxjs/operators';
+import { of } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
 
-import * as movieActions   from '../actions/movie.actions';
-import * as fromServices    from '../../../@core/services';
-import { dispatch } from 'rxjs/internal/observable/pairs';
+import * as movieActions from '../actions/movie.actions';
+import * as fromServices from '../../../@core/services';
+
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Injectable()
 export class MovieEffects {
     constructor(
-        private actions$      : Actions,
+        private actions$: Actions,
         private movieService: fromServices.MovieService,
         private watchlistService: fromServices.WatchlistService,
+        private message: NzMessageService,
     ) { }
 
     loadMovies$ = createEffect(() =>
@@ -31,7 +33,7 @@ export class MovieEffects {
             )
         )
     );
-    
+
     loadMovieDetail$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.LOAD_MOVIE_DETAIL),
@@ -51,41 +53,62 @@ export class MovieEffects {
     createMovie$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.CREATE_MOVIE),
-            switchMap(({payload}) => {
+            switchMap(({ payload }) => {
                 return this.movieService
                     .createMovie(payload)
                     .pipe(
-                        map(movie => movieActions.CreateMovieSuccess({payload: movie})),
+                        map(movie => {
+                            this.message.success('Movie created successfully.', { nzDuration: 3000 });
+                            return movieActions.CreateMovieSuccess({ payload: movie })
+                        }),
                         catchError(error => of(movieActions.CreateMovieFail(error)))
                     )
             })
         )
     );
 
-    @Effect()
-    updatMovie$ = createEffect(() =>
+    updateMovie$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.UPDATE_MOVIE),
             switchMap(({ payload }) => {
                 return this.movieService
                     .updateMovie(payload)
                     .pipe(
-                        map(() => movieActions.UpdateMovieSuccess({payload: payload})),
+                        map(() => {
+                            this.message.success('Movie updated successfully.', { nzDuration: 3000 });
+                            return movieActions.UpdateMovieSuccess({ payload: payload })
+                        }),
                         catchError(error => of(movieActions.UpdateMovieFail(error)))
                     )
             })
         )
     );
 
+    loadWatchlist$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(movieActions.MOVIE_LOAD_WATCHLIST),
+            switchMap(() => {
+                return this.watchlistService
+                    .getWatchlists()
+                    .pipe(
+                        map(movies => movieActions.LoadWatchlistSuccess(movies)),
+                        catchError(error => of(movieActions.LoadWatchlistFail(error)))
+                    )
+            }
+            )
+        )
+    );
+
     addToWatchlist$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.MOVIE_ADD_TO_WATCHLIST),
-            switchMap(({payload}) => {
+            switchMap(({ payload }) => {
                 return this.watchlistService
                     .addToWatchlist(payload)
                     .pipe(
                         map(movie => {
-                            return movieActions.AddToWatchlistSuccess({payload});
+                            this.message.success('Added to watchlist.', { nzDuration: 3000 });
+                            return movieActions.AddToWatchlistSuccess({ payload });
                         }),
                         catchError(error => of(movieActions.AddToWatchlistFail(error)))
                     )
@@ -100,12 +123,15 @@ export class MovieEffects {
                 return this.watchlistService
                     .removeFromWatchlist(payload)
                     .pipe(
-                        map(() => movieActions.RemoveFromWatchlistSuccess({payload: payload})),
+                        map(() => {
+                            this.message.success('Removed from watchlist.', { nzDuration: 3000 });
+                            return movieActions.RemoveFromWatchlistSuccess({ payload: payload })
+                    }),
                         catchError(error => of(movieActions.RemoveFromWatchlistFail(error)))
                     )
             })
         )
     );
-   
-    
+
+
 }

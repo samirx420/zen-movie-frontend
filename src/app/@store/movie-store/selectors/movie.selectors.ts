@@ -19,6 +19,18 @@ export const getMovies = createSelector(
         return Object.keys(entities).map(id => entities[parseInt(id, 10)]);
     }
 );
+export const getMoviesWatchlistEntities = createSelector(
+    getMoviesState,
+    fromMovie.getMovieWatchlist
+);
+export const getWatchlist = createSelector(
+    getMoviesWatchlistEntities,
+    entities => {
+        return Object.keys(entities).map(id => entities[parseInt(id, 10)]);
+    }
+);
+
+
 
 export const getMovie = createSelector(
     getMoviesState,

@@ -6,10 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from '.';
 
+// nz zorro
+import { NzMessageModule } from 'ng-zorro-antd/message';
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    NzMessageModule,
     StoreModule.forFeature('movie', reducers),
     EffectsModule.forFeature(effects),
   ]

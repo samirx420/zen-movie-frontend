@@ -1,4 +1,4 @@
-<movie-form [isEdit]="isEdit" [movie]="model" (create)="onCreate($event)" (update)="onUpdate($event)">
+<!-- <movie-form [isEdit]="isEdit" [movie]="model" (create)="onCreate($event)" (update)="onUpdate($event)">
 </movie-form>
 <ul *ngIf="movies$">
   <button class="bg-red-500 px-2 py-1 rounded text-xs text-white" (click)="showAddForm()">
@@ -8,4 +8,26 @@
     {{movie.title}}
     <button class="bg-red-500 px-2 py-1 rounded text-xs text-white mr-2" (click)="showEditForm(movie)">Edit</button>
   </li>
+</ul> -->
+
+<ul *ngIf="movies$">
+  <section class="text-gray-700 body-font">
+    <div class="container px-3 py-20 mx-auto">
+      <div class="flex justify-between items-center">
+        <h1 class="mb-4 font-semibold text-2xl">Manage</h1>
+        <button class="bg-red-500 px-2 py-1 rounded text-xs text-white outline-none hover:bg-red-600" (click)="open()">
+          New
+        </button>
+      </div>
+      <div class="flex flex-wrap -m-4">
+        <admin-movie-card (editClick)="editClick($event)" class="lg:w-1/6 md:w-1/2" *ngFor="let movie of movies$"
+          [movie]='movie' (addToWatchlist)="addToWatchList($event)" (removeFromWatchList)="removeFromWatchList($event)">
+        </admin-movie-card>
+      </div>
+    </div>
+  </section>
 </ul>
+<nz-drawer [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzTitle="Movie form" (nzOnClose)="close()">
+  <movie-form [isEdit]="isEdit" [movie]="model" (create)="onCreate($event)" (update)="onUpdate($event)">
+  </movie-form>
+</nz-drawer>

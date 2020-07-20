@@ -83,6 +83,25 @@ export const UpdateMovieFail = createAction(
     props<{payload: any}>()
 );
 
+// load watchlist
+export const MOVIE_LOAD_WATCHLIST          = '[Movie] Load Watchlist';
+export const MOVIE_LOAD_WATCHLIST_SUCCESS  = '[Movie] Load Watchlist Success';
+export const MOVIE_LOAD_WATCHLIST_FAIL     = '[Movie] Load Watchlist Fail';
+
+export const LoadWatchlist = createAction(
+    MOVIE_LOAD_WATCHLIST,
+);
+
+export const LoadWatchlistSuccess = createAction(
+    MOVIE_LOAD_WATCHLIST_SUCCESS,
+    props<ResponseWrapper<Movie>>()
+);
+
+export const LoadWatchlistFail = createAction(
+    MOVIE_LOAD_WATCHLIST_FAIL,
+    props<{payload: any}>()
+);
+
 // add to watchlist.
 export const MOVIE_ADD_TO_WATCHLIST            = '[Movie] Add To Watchlist';
 export const MOVIE_ADD_TO_WATCHLIST_SUCCESS    = '[Movie] Add To Watchlist Success';

@@ -20,9 +20,15 @@ export const ROUTES: Routes = [
     component: fromContainers.LandingComponent
   },
   {
+    path: 'watchlist',
+    component: fromContainers.WatchlistComponent,
+    pathMatch: 'full'
+  },
+  {
     path: ':id',
-    component: fromContainers.DetailComponent
-  }
+    component: fromContainers.DetailComponent,
+    pathMatch: 'exact'
+  },
 ]
 
 @NgModule({

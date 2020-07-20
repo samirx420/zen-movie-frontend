@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -41,6 +42,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     AppRoutingModule,
     HttpClientModule,
     HeaderModule,
+    BrowserAnimationsModule,
 
     // NGRX MODULES
     StoreModule.forRoot(reducers, { metaReducers }),
