@@ -61,6 +61,30 @@ const movieReducer = createReducer(
             entities
         }
     }),
+    on(fromMovie.AddToWatchlistSuccess, (state, { payload }) => {
+
+        const entities = {
+            ...state.entities,
+            [payload.id]: {...payload, is_in_watchlist: true}
+        };
+
+        return {
+            ...state,
+            entities
+        }
+    }),
+    on(fromMovie.RemoveFromWatchlist, (state, { payload }) => {
+
+        const entities = {
+            ...state.entities,
+            [payload.id]: {...payload, is_in_watchlist: false}
+        };
+
+        return {
+            ...state,
+            entities
+        }
+    })
 );
 
 export function reducer(state: MovieState | undefined, action: Action) {

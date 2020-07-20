@@ -29,7 +29,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(ROUTES),
     MovieStoreModule,
-    WatchListStoreModule,
+    // WatchListStoreModule,
     HeaderModule,
   ]
 })

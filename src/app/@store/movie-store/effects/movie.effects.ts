@@ -12,7 +12,8 @@ import * as fromServices    from '../../../@core/services';
 export class MovieEffects {
     constructor(
         private actions$      : Actions,
-        private movieService: fromServices.MovieService
+        private movieService: fromServices.MovieService,
+        private watchlistService: fromServices.WatchlistService,
     ) { }
 
     @Effect()
@@ -60,5 +61,36 @@ export class MovieEffects {
             })
         )
     );
+
+    addToWatchlist$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(movieActions.MOVIE_ADD_TO_WATCHLIST),
+            switchMap(({payload}) => {
+                return this.watchlistService
+                    .addToWatchlist(payload)
+                    .pipe(
+                        map(movie => {
+                            return movieActions.AddToWatchlistSuccess({payload});
+                        }),
+                        catchError(error => of(movieActions.AddToWatchlistFail(error)))
+                    )
+            })
+        )
+    );
+
+    removeFromWatchlist$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(movieActions.MOVIE_REMOVE_FROM_WATCHLIST),
+            switchMap(({ payload }) => {
+                return this.watchlistService
+                    .removeFromWatchlist(payload)
+                    .pipe(
+                        map(() => movieActions.RemoveFromWatchlistSuccess({payload: payload})),
+                        catchError(error => of(movieActions.RemoveFromWatchlistFail(error)))
+                    )
+            })
+        )
+    );
+   
     
 }

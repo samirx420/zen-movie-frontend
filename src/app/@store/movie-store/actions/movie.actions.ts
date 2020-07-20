@@ -62,3 +62,44 @@ export const UpdateMovieFail = createAction(
     UPDATE_MOVIE_FAIL,
     props<{payload: any}>()
 );
+
+// add to watchlist.
+export const MOVIE_ADD_TO_WATCHLIST            = '[Movie] Add To Watchlist';
+export const MOVIE_ADD_TO_WATCHLIST_SUCCESS    = '[Movie] Add To Watchlist Success';
+export const MOVIE_ADD_TO_WATCHLIST_FAIL       = '[Movie] Add To Watchlist Fail';
+
+export const AddToWatchlist = createAction(
+    MOVIE_ADD_TO_WATCHLIST,
+    props<{payload: Movie}>()
+);
+
+export const AddToWatchlistSuccess = createAction(
+    MOVIE_ADD_TO_WATCHLIST_SUCCESS,
+    props<{payload: Movie}>()
+);
+
+export const AddToWatchlistFail = createAction(
+    MOVIE_ADD_TO_WATCHLIST_FAIL,
+    props<{error: any}>()
+);
+
+
+// remove from watchlist
+export const MOVIE_REMOVE_FROM_WATCHLIST            = '[Movie] Remove From Watchlist';
+export const MOVIE_REMOVE_FROM_WATCHLIST_SUCCESS    = '[Movie] Remove From Watchlist Success';
+export const MOVIE_REMOVE_FROM_WATCHLIST_FAIL       = '[Movie] Remove From Watchlist Fail';
+
+export const RemoveFromWatchlist = createAction(
+    MOVIE_REMOVE_FROM_WATCHLIST,
+    props<{payload: Movie}>()
+);
+
+export const RemoveFromWatchlistSuccess = createAction(
+    MOVIE_REMOVE_FROM_WATCHLIST_SUCCESS,
+    props<{payload: Movie}>()
+);
+
+export const RemoveFromWatchlistFail = createAction(
+    MOVIE_REMOVE_FROM_WATCHLIST_FAIL,
+    props<{payload: any}>()
+);

@@ -1,7 +1,7 @@
-// import { ParentsEffects } from './parent.effects';
+import { WatchlistEffects } from './watchlist.effects';
 
-// export const effects: any[] = [
-//     ParentsEffects
-// ];
+export const effects: any[] = [
+    WatchlistEffects
+];
 
-// export * from './parent.effects';
+export * from './watchlist.effects';
