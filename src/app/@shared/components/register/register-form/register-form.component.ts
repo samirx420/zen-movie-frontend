@@ -65,7 +65,7 @@ export class RegisterFormComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.register(this.f.username.value, this.f.password.value, this.f.firstname.value, this.f.lastname.value, this.fileToUpload)
+    this.authenticationService.register(this.f.username.value, this.f.password.value, this.f.first_name.value, this.f.last_name.value, this.fileToUpload)
       .pipe(first())
       .subscribe(
         data => {
