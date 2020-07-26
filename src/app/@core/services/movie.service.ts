@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError }       from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
-import { Movie }          from '../models/movie.model';
-import { ResponseWrapper }  from '../models/response.model';
+import { Movie } from '../models/movie.model';
+import { ResponseWrapper } from '../models/response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class MovieService {
       .get<ResponseWrapper<Movie>>(`/api/v1/movies`)
       .pipe(catchError((error: any) => throwError(error)));
   }
-  
+
   getMovieDetail(movieId: number): Observable<Movie> {
     return this.http
       .get<Movie>(`/api/v1/movies/${movieId}`)
@@ -27,8 +27,13 @@ export class MovieService {
   }
 
   createMovie(payload: Movie): Observable<Movie> {
+    const formData: FormData = new FormData();
+    formData.append('title', payload.title);
+    formData.append('description', payload.description);
+    formData.append('duration', payload.duration);
+    formData.append('release_date', payload.release_date);
     return this.http
-      .post<Movie>(`/api/v1/movies`, payload)
+      .post<Movie>(`/api/v1/movies`, formData)
       .pipe(catchError((error: any) => throwError(error)));
   }
 
@@ -36,5 +41,5 @@ export class MovieService {
     return this.http
       .put<Movie>(`/api/v1/movies/${payload.id}`, payload)
       .pipe(catchError((error: any) => throwError(error)));
-  }    
+  }
 }
