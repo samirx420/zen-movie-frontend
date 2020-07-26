@@ -1,6 +1,6 @@
-import { paged } from "./paged.model";
+import { Paged } from "./paged.model";
 
 export interface ResponseWrapper<T> {    
     data?   : T[];
-    paged?  : paged
+    paged?  : Paged
 }

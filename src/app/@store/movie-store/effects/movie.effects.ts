@@ -22,9 +22,9 @@ export class MovieEffects {
     loadMovies$ = createEffect(() =>
         this.actions$.pipe(
             ofType(movieActions.LOAD_MOVIE),
-            switchMap(() => {
+            switchMap(({ payload }) => {
                 return this.movieService
-                    .getMovies()
+                    .getMovies(payload)
                     .pipe(
                         map(movies => movieActions.LoadMovieSuccess(movies)),
                         catchError(error => of(movieActions.LoadMovieFail(error)))

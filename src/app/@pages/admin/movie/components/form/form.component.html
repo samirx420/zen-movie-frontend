@@ -69,6 +69,13 @@
       </ng-container>
     </div>
     <!-- end budget -->
+    
+    <!-- start poster -->
+    <div class="mt-4">
+      <p class="text-6F7782 text-xs leading-none mb-2">Poster</p>
+      <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+    </div>
+    <!-- end budget -->
 
     <button type="button" class="bg-blue-500 px-2 py-1 rounded text-xs text-white mt-4" *ngIf="!isEdit"
       (click)="_create(form)">

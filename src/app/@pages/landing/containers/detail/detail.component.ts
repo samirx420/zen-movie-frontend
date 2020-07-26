@@ -32,7 +32,6 @@ export class DetailComponent implements OnInit {
     this.user$ = this.authService.currentUserValue;
     this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
-      // In a real app: dispatch action to load the details here.
       this.movieStore.dispatch(fromMovieStore.LoadMovieDetail({movieId: this.id}));
     });
 
@@ -48,14 +47,10 @@ export class DetailComponent implements OnInit {
       return;
     }
     this.movieStore.dispatch(fromMovieStore.AddToWatchlist({ payload: event }));
-    // event = {...event, is_in_watchlist: true};
-    // this.movieStore.dispatch(fromMovieStore.UpdateMovieSuccess({ payload: event }));
   }
   
   removeFromWatchList(event: Movie){
     this.movieStore.dispatch(fromMovieStore.RemoveFromWatchlist({ payload: event }));
-    // event = {...event, is_in_watchlist: false};
-    // this.movieStore.dispatch(fromMovieStore.UpdateMovieSuccess({ payload: event }));
   }
 
 }

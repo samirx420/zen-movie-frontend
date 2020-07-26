@@ -2,19 +2,22 @@ import * as fromMovie from '../actions';
 import { createReducer, on, Action } from '@ngrx/store';
 
 import { Movie } from '../../../@core/models/movie.model';
+import { Paged } from '../../../@core/models/paged.model';
 
 export interface MovieState {
-    entities: { [id: number]: Movie };
+    entities : { [id: number]: Movie };
     watchlist: { [id: number]: Movie };
-    entity  : Movie,
-    loading : boolean;
-    loaded  : boolean;
+    entity   : Movie,
+    paged    : Paged,
+    loading  : boolean;
+    loaded   : boolean;
 }
 
 export const initialState: MovieState = {
     entities : {},
     watchlist: {},
     entity   : {},
+    paged    : {},
     loading  : false,
     loaded   : false,
 };
@@ -33,17 +36,19 @@ const movieReducer = createReducer(
             {}
         );
 
+        const paged = payload.paged;
+
         return {
             ...state,
             loading: false,
             loaded : true,
+            paged  : paged,
             entities,
         };
     }),
     on(fromMovie.LoadMovieFail, state => ({ ...state, loading: false, loaded: false, })),
     on(fromMovie.LoadMovieDetailSuccess, (state, payload) => {
         const entity = payload;
-
 
         return {
             ...state,
@@ -96,16 +101,16 @@ const movieReducer = createReducer(
     }),
     on(fromMovie.AddToWatchlistSuccess, (state, { payload }) => {
 
-        const entities = {
-            ...state.entities,
-            [payload.id]: { ...payload, is_in_watchlist: true }
-        };
+        // const entities = {
+        //     ...state.entities,
+        //     [payload.id]: { ...payload, is_in_watchlist: true }
+        // };
 
         const entity = { ...state.entity, is_in_watchlist: true }
 
         return {
             ...state,
-            entities,
+            // entities,
             entity
         }
     }),
@@ -135,6 +140,7 @@ export function reducer(state: MovieState | undefined, action: Action) {
 
 export const getMovieEntities  = (state: MovieState) => state.entities;
 export const getMovieEntitiy   = (state: MovieState) => state.entity;
+export const getMoviePaged     = (state: MovieState) => state.paged;
 export const getMovieWatchlist = (state: MovieState) => state.watchlist;
 export const getMovieLoading   = (state: MovieState) => state.loading;
 export const getMovieLoaded    = (state: MovieState) => state.loaded;

@@ -24,6 +24,9 @@
           [movie]='movie' (addToWatchlist)="addToWatchList($event)" (removeFromWatchList)="removeFromWatchList($event)">
         </admin-movie-card>
       </div>
+      <div class="mt-4" *ngIf="(paged$ | async) as paged">
+        <nz-pagination [nzPageIndex]="paged.page" [nzTotal]="paged.rowCount"></nz-pagination>
+      </div>
     </div>
   </section>
 </ul>
