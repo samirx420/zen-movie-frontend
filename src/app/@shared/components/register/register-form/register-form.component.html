@@ -7,7 +7,7 @@
             </label>
             <input formControlName="first_name"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="firstname" type="text" placeholder="First name">
+                id="first_name" type="text" placeholder="First name">
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
@@ -15,7 +15,7 @@
             </label>
             <input formControlName="last_name"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="lastname" type="text" placeholder="Last name">
+                id="last_name" type="text" placeholder="Last name">
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -42,7 +42,7 @@
             <p class="text-red-500 text-xs italic">Please choose an avatar.</p>
         </div>
         <div class="flex items-center justify-between">
-            <button [disabled]="loading"
+            <button id="btnRegister" [disabled]="loading"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">Loading</span>
                 Register

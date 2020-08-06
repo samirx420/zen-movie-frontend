@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // CONTAINERS
 import * as fromContainers from './containers';
@@ -13,6 +13,7 @@ import { HeaderModule } from 'src/app/@shared/components/header/header.module';
 
 // STORE
 import { MovieStoreModule } from '../../@store/movie-store/movie-store.module';
+import { ReviewStoreModule } from '../../@store/review-store/review-store.module';
 
 export const ROUTES: Routes = [
   {
@@ -36,8 +37,10 @@ export const ROUTES: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild(ROUTES),
     MovieStoreModule,
+    ReviewStoreModule,
     HeaderModule,
   ]
 })

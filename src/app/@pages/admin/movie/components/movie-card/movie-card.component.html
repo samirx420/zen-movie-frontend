@@ -15,7 +15,7 @@
   </a>
   <div class="mt-4">
     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Crime, Drama, Thriller</h3>
-    <h2 class="text-gray-900 title-font text-lg font-medium cursor-pointer" [routerLink]="['/movie', movie.id]">{{movie.title}}</h2>
+    <h2 class="text-gray-900 title-font text-lg font-medium cursor-pointer movie__title" [routerLink]="['/movie', movie.id]">{{movie.title}}</h2>
     <div class="flex mt-1 justify-between">
       <p class="">8.9</p>
       <button class="px-2 py-1 bg-red-200 hover:bg-red-300 focused:outline-none rounded text-sm" (click)="_editClick(movie)">Edit</button>

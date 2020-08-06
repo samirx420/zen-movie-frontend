@@ -1,14 +1,19 @@
 <section class="text-gray-700 body-font" *ngIf="(movie$ | async) as movie">
   <div class="container px-5 py-20 mx-auto">
     <div class="flex">
-      <div class="rounded overflow-hidden">
-        <img src="https://image.tmdb.org/t/p/w300/oyG9TL7FcRP4EZ9Vid6uKzwdndz.jpg" alt="">
+      <div class="rounded overflow-hidden w-56 h-56">
+        <img *ngIf="!movie.poster_path" alt="ecommerce" class="object-cover object-center w-full h-full block"
+          src="https://image.tmdb.org/t/p/w300/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+        <img *ngIf="movie.poster_path" alt="ecommerce" class="object-cover object-center w-full h-full block"
+          src="http://localhost:3000/{{movie.poster_path}}">
       </div>
       <div class="ml-4 flex-1">
         <!-- <h2 class="font-semibold text-3xl text-blue-500">Gabriel's inferno</h2> -->
         <h2 class="font-semibold text-3xl text-blue-500">{{movie.title}}</h2>
-        <button class="text-base bg-green-500 text-white rounded px-3 py-2" *ngIf="!movie.is_in_watchlist" (click)="addToWatchList(movie)">Add to my watchlist</button>
-        <button class="text-base bg-red-500 text-white rounded px-3 py-2" *ngIf="movie.is_in_watchlist" (click)="removeFromWatchList(movie)">Remove from watchlist</button>
+        <button class="text-base bg-green-500 text-white rounded px-3 py-2" *ngIf="!movie.is_in_watchlist"
+          (click)="addToWatchList(movie)">Add to my watchlist</button>
+        <button class="text-base bg-red-500 text-white rounded px-3 py-2" *ngIf="movie.is_in_watchlist"
+          (click)="removeFromWatchList(movie)">Remove from watchlist</button>
         <!-- <p class="mt-4 text-lg font-regular">
           An intriguing and sinful exploration of seduction, forbidden love, and redemption, Gabriel's Inferno is a captivating and wildly passionate tale of one man's escape from his own personal hell as he tries to earn the impossible--forgiveness and love.
         </p> -->
@@ -16,11 +21,39 @@
           {{movie.description}}
         </p>
         <div class="flex justify-between bg-gray-200 p-4 mt-4 text-base font-medium">
-          <span>Release date: 29.5.2020</span>
-          <span>Duration: 0h 00m</span>
-          <span>Budget: $0</span>
+          <span>Release date: {{movie.release_date}}</span>
+          <span>Duration: {{movie.duration}}min</span>
+          <span>Budget: ${{movie.budget}}</span>
+        </div>
+
+        <h1 class="font-medium leading-7 text-lg mt-4">Review</h1>
+        <div *ngIf="user$">
+          <input class="border border-gray-900 px-2 py-1 mr-2 rounded" [(ngModel)]="review"/> <button (click)="postReview()"> post</button>
+          {{review}}
+        </div>
+        <div>
+
+          <ng-container *ngIf="(reviews$ | async) as reviews">
+            <div *ngFor="let review of reviews">
+              <div class="avatar-outer-dimension flex items-center justify-center rounded-full border border-green-500">
+                <div class="avatar-inner-dimension bg-gray-800 rounded-full ">
+         
+                </div>
+            </div> 
+            {{review.review}}
+            </div>
+          </ng-container>
+
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- start review -->
+<!-- <div *ngIf="user$ | async">
+  sdf
+  <input type="textarea" name="" id="" />
+</div> -->
+
+<!-- end review -->
