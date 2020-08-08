@@ -36,12 +36,12 @@ export class DetailComponent implements OnInit {
   }
 
   constructor(
-    private route: ActivatedRoute,
-    private movieStore: Store<fromMovieStore.MovieState>,
+    private route      : ActivatedRoute,
+    private movieStore : Store<fromMovieStore.MovieState>,
     private reviewStore: Store<fromReviewStore.ReviewState>,
     private authService: AuthService,
-    private router: Router,
-    ) { }
+    private router     : Router,
+  ) { }
 
   ngOnInit() {
     // DISPATCHERS

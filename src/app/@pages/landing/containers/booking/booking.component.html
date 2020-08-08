@@ -1,0 +1,33 @@
+<p>
+  booking works!
+</p>
+{{id}}
+
+<div>
+  <label for="">Select Date</label>
+  <input [(ngModel)]="booking_date" type="date" name="booking_date" id="" (change)="getBookedSeats()">
+</div>
+<div>
+  <label for="">Select Time</label>
+  <select name="show_time" id="" [(ngModel)]="show_time" (change)="getBookedSeats()">
+    <option value="9:00">9:00</option>
+    <option value="12:00">12:00</option>
+    <option value="2:00">2:00</option>
+    <option value="4:00">4:00</option>
+  </select>
+</div>
+<div>
+  <label for="">Select seat</label>
+  <ng-container *ngFor="let row of rows">
+    <div class="">
+      <ng-container *ngFor="let col of cols">
+        <div class="p-4 font-semibold inline-block m-2 cursor-pointer" [ngClass]="(checkBooked(row, col))?'bg-red-400':'bg-green-400'" (click)="onSeatSelect(row, col)">{{row}}{{col}}</div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <!-- <div class="p-4 bg-green-400 font-semibold inline-block mr-2 cursor-pointer">1</div> -->
+</div>
+
+<button (click)="onBookingClick()">Booking Confirm</button>
+
+{{booked_seats | json}}

@@ -30,6 +30,11 @@ export const ROUTES: Routes = [
     component: fromContainers.DetailComponent,
     pathMatch: 'exact'
   },
+  {
+    path: 'booking/:id',
+    component: fromContainers.BookingComponent,
+    pathMatch: 'exact'
+  },
 ]
 
 @NgModule({
