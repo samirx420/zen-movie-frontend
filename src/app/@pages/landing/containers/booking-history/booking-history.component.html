@@ -25,19 +25,18 @@
 <!-- start banner -->
 <div class="banner">
   <h2 class="banner__heading text-white">
-    Watchlist
+    Booking History
   </h2>
   <!-- <p class="banner__navigation">AmyMovie > Grid Layout 5 Columns</p> -->
 </div>
 <!-- end banner -->
-
-<ng-container *ngIf="(movies$ | async) as movies">
+<ng-container *ngIf="history">
 
   <!-- start movie grid -->
   <div class=" custom__container movie__grid flex flex-wrap justify-start"
-    *ngIf="movies$">
+    *ngIf="history">
     <div class="movie__grid--item mr-6"
-      *ngFor="let movie of movies"
+      *ngFor="let movie of history"
       [routerLink]="['/movie', movie.id]">
       <div class="">
         <img src="http://localhost:3000/{{movie.poster_path}}"
@@ -45,22 +44,8 @@
       </div>
       <div class="mt-3">
         <p class="movie__title">{{movie.title}}</p>
-        <p class="mt-3 text-sm leading-4">Release: {{movie.release_date}}</p>
-        <div class="flex mt-2">
-          <div class="flex">
-            <svg width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V11H13V17ZM13 9H11V7H13V9Z"
-                fill="#757575" />
-            </svg>
-
-            <span class="ml-1 cursor-pointer" (click)="removeFromWatchList(movie)">Remove</span>
-          </div>
-        </div>
+        <p class="mt-3 text-sm leading-4">Date: {{movie.booking_date}} [{{movie.show_time}}]</p>
+        <p class="mt-3 text-sm leading-4">Seat no: {{movie.seat_row}} {{movie.seat_column}}</p>
       </div>
     </div>
   </div>

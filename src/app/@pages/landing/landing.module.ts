@@ -26,6 +26,11 @@ export const ROUTES: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'booking-history',
+    component: fromContainers.BookingHistoryComponent,
+    pathMatch: 'exact'
+  },
+  {
     path: ':id',
     component: fromContainers.DetailComponent,
     pathMatch: 'exact'

@@ -1,33 +1,112 @@
-<p>
-  booking works!
-</p>
-{{id}}
+<!-- start banner -->
+<div class="banner">
+  <h2 class="banner__heading text-white">
+    Booking
+  </h2>
+  <p class="banner__navigation">AmyMovie > Grid Layout 5 Columns</p>
+</div>
+<!-- end banner -->
 
-<div>
-  <label for="">Select Date</label>
-  <input [(ngModel)]="booking_date" type="date" name="booking_date" id="" (change)="getBookedSeats()">
-</div>
-<div>
-  <label for="">Select Time</label>
-  <select name="show_time" id="" [(ngModel)]="show_time" (change)="getBookedSeats()">
-    <option value="9:00">9:00</option>
-    <option value="12:00">12:00</option>
-    <option value="2:00">2:00</option>
-    <option value="4:00">4:00</option>
-  </select>
-</div>
-<div>
-  <label for="">Select seat</label>
-  <ng-container *ngFor="let row of rows">
-    <div class="">
-      <ng-container *ngFor="let col of cols">
-        <div class="p-4 font-semibold inline-block m-2 cursor-pointer" [ngClass]="(checkBooked(row, col))?'bg-red-400':'bg-green-400'" (click)="onSeatSelect(row, col)">{{row}}{{col}}</div>
-      </ng-container>
+
+<div class="max-w-5xl mx-auto mt-10 flex"  *ngIf="(movie$ | async) as movie">
+
+  <div class="overflow-hidden rounded-md poster-dimension mr-10">
+    <img src="http://localhost:3000/{{movie.poster_path}}"
+      alt="">
+  </div>
+
+  <div>
+    <p class="text-3xl font-bold leading-7">{{movie.title}}</p>
+    <div class="flex">
+      <div>
+        <label for="">Select Date: </label>
+        <input class="ml-2 border border-gray-500 py-1 px-2 rounded-full outline-none"
+          [(ngModel)]="booking_date"
+          type="date"
+          name="booking_date"
+          id=""
+          (change)="getBookedSeats()">
+      </div>
+      <div class="ml-3">
+        <label for="">Select Time</label>
+        <select class="ml-2 border border-gray-500 py-1 px-2 rounded-full outline-none"
+          name="show_time"
+          id=""
+          [(ngModel)]="show_time"
+          (change)="getBookedSeats()">
+          <option value="9:00">9:00</option>
+          <option value="12:00">12:00</option>
+          <option value="2:00">2:00</option>
+          <option value="4:00">4:00</option>
+        </select>
+      </div>
     </div>
-  </ng-container>
-  <!-- <div class="p-4 bg-green-400 font-semibold inline-block mr-2 cursor-pointer">1</div> -->
+    <div class="mt-6 flex">
+      <div class="mr-3">
+        <span class="text-base">Available seats</span>
+        <div class="mt-2 bg-green-500 block-dimension"></div>
+      </div>
+      <div>
+        <span class="text-base">Booked seats</span>
+        <div class="mt-2 bg-red-500 block-dimension"></div>
+      </div>
+    </div>
+    <div class="mt-6 flex flex-wrap w-696">
+      <ng-container *ngFor="let row of rows">
+        <div class="">
+          <ng-container *ngFor="let col of cols">
+            <div class="tile-dimension flex items-center justify-center mr-1 mb-1 cursor-pointer hover:bg-red-400"
+              [ngClass]="(checkBooked(row, col))?'bg-red-500':'bg-green-500'"
+              (click)="onSeatSelect(row, col)">{{row}}{{col}}</div>
+          </ng-container>
+        </div>
+      </ng-container>
+      <!-- <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+      <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div> -->
+
+    </div>
+    <div class="mt-5">
+      <button class="btn__book" (click)="onBookingClick()">Book</button>
+
+    </div>
+  </div>
+
 </div>
-
-<button (click)="onBookingClick()">Booking Confirm</button>
-
-{{booked_seats | json}}

@@ -40,6 +40,12 @@ export class BookingService {
       .post<any>(`/api/v1/bookings/booked-seats`, payload)
       .pipe(catchError((error: any) => throwError(error)));
   }
+  getMyBookingHistory(): Observable<any> {
+
+    return this.http
+      .get<any>(`/api/v1/bookings`)
+      .pipe(catchError((error: any) => throwError(error)));
+  }
 
   // updateMovie(payload: Movie): Observable<Movie> {
   //   return this.http

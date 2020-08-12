@@ -41,7 +41,7 @@ export class ReviewEffects {
                     .createReview(payload)
                     .pipe(
                         map(movie => {
-                            this.message.success('Movie created successfully.', { nzDuration: 3000 });
+                            this.message.success('Review created successfully.', { nzDuration: 3000 });
                             return reviewActions.CreateReviewSuccess({ payload: movie })
                         }),
                         catchError(error => of(reviewActions.CreateReviewFail(error)))

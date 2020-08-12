@@ -6,3 +6,15 @@
     width: 65px;
     height: 65px;
 }
+
+.movie__banner {
+    width: 100%;
+    height: 427px;
+    background-image: url('./../../../../../assets//images/img_21.jpg');
+    padding: 0px 113px;
+}
+
+.movie__poster {
+    width: 264px;
+    height: 396px;
+}

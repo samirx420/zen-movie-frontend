@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 // MODELS
-
 import { Movie } from 'src/app/@core/models/movie.model';
 // STORES
 import { Store } from '@ngrx/store';

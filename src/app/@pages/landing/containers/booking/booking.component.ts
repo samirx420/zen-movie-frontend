@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+// MODELS
+import { Movie } from 'src/app/@core/models/movie.model';
 
 // SERVICES
 import { AuthService } from 'src/app/@core/services';
 import { BookingService } from 'src/app/@core/services';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+// STORES
+import { Store } from '@ngrx/store';
+import * as fromMovieStore from '../../../../@store/movie-store';
 
 @Component({
   selector: 'app-booking',
@@ -18,8 +27,11 @@ export class BookingComponent implements OnInit {
   show_time: any;
   booked_seats: any[] = [];
 
-  rows = [1, 2];
-  cols = [1, 2];
+  
+  movie$: Observable<Movie> ;
+
+  rows = [1, 2, 3, 4, 5, 6, 7, 8];
+  cols = [1, 2, 3, 4, 5];
 
   selectedRow: any;
   selectedCol: any;
@@ -29,13 +41,19 @@ export class BookingComponent implements OnInit {
     private route: ActivatedRoute,
     private authService: AuthService,
     private bookingService: BookingService,
+    private movieStore : Store<fromMovieStore.MovieState>,
+    private message: NzMessageService,
     private router: Router,
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = +params['id'];
+      this.movieStore.dispatch(fromMovieStore.LoadMovieDetail({movieId: this.id}));
     });
+
+     // SELECTORS
+     this.movie$ = this.movieStore.select(fromMovieStore.getMovie);
   }
 
   onSeatSelect(row, col) {
@@ -57,6 +75,10 @@ export class BookingComponent implements OnInit {
   }
 
   onBookingClick() {
+    if (this.checkBooked(this.selectedRow, this.selectedCol)) {
+      this.message.success('Seat booked already.', { nzDuration: 3000 });
+      return;
+    }
     if (this.booking_date) {
       let payload = {
         booking_date: this.booking_date,
@@ -71,6 +93,7 @@ export class BookingComponent implements OnInit {
           seat_column: this.selectedCol,
         }
         this.booked_seats.push(payload_formatted)
+        this.message.success('Booking success.', { nzDuration: 3000 });
         console.log(payload);
       })
     }
