@@ -4,7 +4,7 @@
     <!-- start first name -->
     <div class="">
       <p class="text-6F7782 text-xs leading-none mb-2">Title</p>
-      <input
+      <input id="movie_title"
         class="focus:outline-none w-full rounded border border-gray-400 p-2 text-sm text-gray-900 leading-relaxed focus:border-blue-500"
         formControlName="title" type="text" placeholder="Title"
         [ngClass]="{'border-red-500': f.title.errors && f.title.touched}" />
@@ -17,7 +17,7 @@
     <!-- start last name -->
     <div class="mt-4">
       <p class="text-6F7782 text-xs leading-none mb-2">Description</p>
-      <input
+      <input id="movie_description"
         class="focus:outline-none w-full rounded border border-gray-400 p-2 text-sm text-gray-900 leading-relaxed focus:border-blue-500"
         formControlName="description" placeholder="description"
         [ngClass]="{'border-red-500': f.description.errors && f.description.touched}" type="text" />
@@ -28,7 +28,57 @@
     </div>
     <!-- end last name -->
 
-    <button type="button" class="bg-blue-500 px-2 py-1 rounded text-xs text-white mt-4" *ngIf="!isEdit"
+    <!-- start duration -->
+    <div class="mt-4">
+      <p class="text-6F7782 text-xs leading-none mb-2">Duration</p>
+      <input id="movie_duration"
+        class="focus:outline-none w-full rounded border border-gray-400 p-2 text-sm text-gray-900 leading-relaxed focus:border-blue-500"
+        formControlName="duration" placeholder="duration"
+        [ngClass]="{'border-red-500': f.duration.errors && f.duration.touched}" type="text" />
+      <ng-container>
+        <span *ngIf="f.duration.errors && f.duration.touched" class="text-xs text-red-500">Please enter
+          duration.</span>
+      </ng-container>
+    </div>
+    <!-- end duration -->
+
+    <!-- start release date -->
+    <div class="mt-4">
+      <p class="text-6F7782 text-xs leading-none mb-2">Release date</p>
+      <input id="movie_release_date"
+        class="focus:outline-none w-full rounded border border-gray-400 p-2 text-sm text-gray-900 leading-relaxed focus:border-blue-500"
+        formControlName="release_date" placeholder="release_date"
+        [ngClass]="{'border-red-500': f.release_date.errors && f.release_date.touched}" type="text" />
+      <ng-container>
+        <span *ngIf="f.release_date.errors && f.release_date.touched" class="text-xs text-red-500">Please enter
+          release date.</span>
+      </ng-container>
+    </div>
+    <!-- end release date -->
+
+    <!-- start budget -->
+    <div class="mt-4">
+      <p class="text-6F7782 text-xs leading-none mb-2">Budget</p>
+      <input
+      id="movie_budget"
+        class="focus:outline-none w-full rounded border border-gray-400 p-2 text-sm text-gray-900 leading-relaxed focus:border-blue-500"
+        formControlName="budget" placeholder="budget"
+        [ngClass]="{'border-red-500': f.budget.errors && f.budget.touched}" type="text" />
+      <ng-container>
+        <span *ngIf="f.budget.errors && f.budget.touched" class="text-xs text-red-500">Please enter
+          budget.</span>
+      </ng-container>
+    </div>
+    <!-- end budget -->
+
+    <!-- start poster -->
+    <div class="mt-4">
+      <p class="text-6F7782 text-xs leading-none mb-2">Poster</p>
+      <input type="file" id="file" (change)="handleFileInput($event.target.files)">
+    </div>
+    <!-- end budget -->
+
+    <button id="btnMovieCreate" type="button" class="bg-blue-500 px-2 py-1 rounded text-xs text-white mt-4" *ngIf="!isEdit"
       (click)="_create(form)">
       Create
     </button>

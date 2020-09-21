@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet"
+        href="./../css/tailwind.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+
+    <style>
+        .nav__link {
+            display: flex;
+        }
+
+        .nav__link li {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 55px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        .nav__link li:hover {
+            background-color: #F88C2A;
+            color: white;
+        }
+
+        .nav__link .active {
+            background-color: #F88C2A;
+            color: white;
+        }
+
+        .search {
+            display: flex;
+        }
+
+        .search__input {
+            width: 250px;
+            height: 40px;
+            border-radius: 25px;
+            font-size: 14px;
+            line-height: 20px;
+            color: DBDBDB;
+            border: 2px solid #DBDBDB;
+            padding: 10px 16px;
+            outline: none;
+            margin-right: 10px;
+            margin-left: 30px;
+        }
+
+        .search__button {
+            height: 40px;
+            width: 40px;
+            color: white;
+            background-color: #F88C2A;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        /* start banner */
+        .banner {
+            width: 100%;
+            height: 210px;
+            background-image: url(./../images/mvcnm2.jpg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 112px;
+            color: white;
+
+        }
+
+        .banner__heading {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 55px;
+        }
+
+        .banner__navigation {
+            font-size: 13px;
+            line-height: 18px;
+        }
+
+        /* end banner */
+
+        .custom__container {
+            max-width: 1170px;
+            margin: 0 auto;
+        }
+
+        .content {
+            margin-top: 80px;
+        }
+
+        .content h2 {
+            font-size: 30px;
+            line-height: 42px;
+            color: #666666;
+            font-weight: 700;
+        }
+
+        .content .active {
+            color: #F88C2A;
+        }
+
+        .content .content__options {
+            display: flex;
+        }
+
+        .content__options--select {
+            width: 180px;
+            padding: 5px 16px;
+            border: 2px solid #dddddd;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 20px;
+            margin-left: 10px;
+        }
+
+        /* start movie grid */
+        .movie__grid {
+            margin-top: 24px;
+        }
+
+        .movie__grid--item {
+            margin-bottom: 50px;
+        }
+
+        .movie__grid img {
+            width: 204px;
+            height: 309px;
+        }
+
+        .movie__title {
+            font-size: 20px;
+            line-height: 20px;
+            font-weight: 700;
+        }
+
+        /* end movie grid */
+
+        .h-514 {
+            height: 514px;
+        }
+
+        .poster-dimension {
+            width: 392px;
+            height: 588px;
+        }
+
+        .block-dimension {
+            height: 40px;
+            width: 130px;
+        }
+
+        .tile-dimension {
+            height: 45px;
+            width: 83px;
+        }
+
+        .w-696 {
+            width: 696px;
+        }
+
+        .btn__book {
+            width: 137px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 13px;
+            line-height: 18.6px;
+            background: linear-gradient(90deg, #BD551D 0%, #F0BA01 100%);
+            border-radius: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="h-screen">
+
+        <!-- start header -->
+        <header class="w-full bg-white">
+            <div class="container mx-auto py-3">
+
+                <!-- start logo -->
+                <div class="flex justify-between items-center">
+                    <div class="flex">
+                        <img src="./../images/img_66.png"
+                            alt="logo" />
+                        <div class="search">
+                            <input class="search__input"
+                                type="text"
+                                name="search"
+                                placeholder="Search movie..."
+                                id="">
+                            <button class="search__button">GO</button>
+                        </div>
+                    </div>
+                    <ul class="nav__link">
+                        <li class="active">
+                            HOME
+                        </li>
+                        <li>
+                            MOVIE LAYOUT
+                        </li>
+                        <li>
+                            PAGE SINGLE
+                        </li>
+                        <li>
+                            SHOWTIME
+                        </li>
+                        <li>
+                            BOOK TICKET
+                        </li>
+                    </ul>
+                </div>
+                <!-- end logo -->
+
+
+            </div>
+        </header>
+        <!-- end header -->
+
+        <!-- start banner -->
+        <div class="banner">
+            <h2 class="banner__heading">
+                GV Plaza
+            </h2>
+            <p class="banner__navigation">AmyMovie > Grid Layout 5 Columns</p>
+        </div>
+        <!-- end banner -->
+
+        <div class="max-w-5xl mx-auto mt-10 flex">
+
+            <div class="overflow-hidden rounded-md poster-dimension mr-10">
+                <img src="./../images/tWqifoYuwLETmmasnGHO7xBjEtt.jpg"
+                    alt="">
+            </div>
+
+            <div>
+                <p class="text-3xl font-bold leading-7">GV Plaza</p>
+                <div class="mt-6 flex">
+                    <div class="mr-3">
+                        <span class="text-base">Available seats</span>
+                        <div class="mt-2 bg-green-500 block-dimension"></div>
+                    </div>
+                    <div>
+                        <span class="text-base">Booked seats</span>
+                        <div class="mt-2 bg-red-500 block-dimension"></div>
+                    </div>
+                </div>
+                <div class="mt-6 flex flex-wrap w-696">
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+                    <div class="tile-dimension bg-red-500 mr-1 mb-1 cursor-pointer hover:bg-red-400"></div>
+
+                </div>
+                <div class="mt-5">
+                    <button class="btn__book">Book</button>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+        <!-- start footer section -->
+        <div class="w-full bg-gray-900">
+            <div class="container py-8 text-center">
+                <span class="text-gray-500">
+                    <p></p> copyright 2020 Zen Movie
+                </span>
+            </div>
+
+        </div>
+        <!-- end footer section -->
+
+    </div>
+
+</body>
+
+</html>

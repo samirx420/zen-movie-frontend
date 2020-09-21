@@ -1,0 +1,53 @@
+<!-- <ul *ngIf="movies$| async">
+  <section class="text-gray-700 body-font">
+    <div class="container px-5 py-20 mx-auto">
+      <h1 class="mb-4 font-semibold text-2xl">Watchlist</h1>
+      <div class="flex flex-wrap -m-4">
+        <movie-card [displayWlBtn]="true" class="lg:w-1/6 md:w-1/2" *ngFor="let movie of movies$ | async" [movie]='movie'
+          (addToWatchlist)="addToWatchList($event)" (removeFromWatchList)="removeFromWatchList($event)"></movie-card>
+      </div>
+    </div>
+  </section>
+</ul> -->
+
+<!-- <ul *ngIf="movies$">
+  <section class="text-gray-700 body-font">
+    <div class="container px-5 py-20 mx-auto">
+      <h1 class="mb-4 font-semibold text-2xl">Browse</h1>
+      <div class="flex flex-wrap -m-4">
+        <movie-card class="lg:w-1/6 md:w-1/2" *ngFor="let movie of movies$" [routerLink]="['/movie', movie.id]" [movie]='movie'
+          (addToWatchlist)="addToWatchList($event)" (removeFromWatchList)="removeFromWatchList($event)"></movie-card>
+      </div>
+    </div>
+  </section>
+</ul> -->
+
+<!-- start banner -->
+<div class="banner">
+  <h2 class="banner__heading text-white">
+    Booking History
+  </h2>
+  <!-- <p class="banner__navigation">AmyMovie > Grid Layout 5 Columns</p> -->
+</div>
+<!-- end banner -->
+<ng-container *ngIf="history">
+
+  <!-- start movie grid -->
+  <div class=" custom__container movie__grid flex flex-wrap justify-start"
+    *ngIf="history">
+    <div class="movie__grid--item mr-6"
+      *ngFor="let movie of history"
+      [routerLink]="['/movie', movie.id]">
+      <div class="">
+        <img src="http://localhost:3000/{{movie.poster_path}}"
+          alt="">
+      </div>
+      <div class="mt-3">
+        <p class="movie__title">{{movie.title}}</p>
+        <p class="mt-3 text-sm leading-4">Date: {{movie.booking_date}} [{{movie.show_time}}]</p>
+        <p class="mt-3 text-sm leading-4">Seat no: {{movie.seat_row}} {{movie.seat_column}}</p>
+      </div>
+    </div>
+  </div>
+  <!-- end movie grid -->
+</ng-container>

@@ -3,6 +3,7 @@ import { createAction, props } from '@ngrx/store';
 // MODELS
 import { ResponseWrapper }  from '../../../@core/models/response.model';
 import { Movie } from '../../../@core/models/movie.model';
+import { Paged } from 'src/app/@core/models/paged.model';
 
 // load movie
 export const LOAD_MOVIE          = '[Movie] Load Movie';
@@ -11,6 +12,7 @@ export const LOAD_MOVIE_FAIL     = '[Movie] Load Movie Fail';
 
 export const LoadMovie = createAction(
     LOAD_MOVIE,
+    props<{payload:Paged}>()
 );
 
 export const LoadMovieSuccess = createAction(
@@ -50,7 +52,7 @@ export const CREATE_MOVIE_FAIL       = '[Movie] Create Movie Fail';
 
 export const CreateMovie = createAction(
     CREATE_MOVIE,
-    props<{payload: Movie}>()
+    props<{payload: {movie: Movie, buffer: File} }>()
 );
 
 export const CreateMovieSuccess = createAction(

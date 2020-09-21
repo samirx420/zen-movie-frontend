@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet"
+        href="./../css/tailwind.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+
+    <style>
+        .nav__link {
+            display: flex;
+        }
+
+        .nav__link li {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 55px;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        .nav__link li:hover {
+            background-color: #F88C2A;
+            color: white;
+        }
+
+        .nav__link .active {
+            background-color: #F88C2A;
+            color: white;
+        }
+
+        .search {
+            display: flex;
+        }
+
+        .search__input {
+            width: 250px;
+            height: 40px;
+            border-radius: 25px;
+            font-size: 14px;
+            line-height: 20px;
+            color: DBDBDB;
+            border: 2px solid #DBDBDB;
+            padding: 10px 16px;
+            outline: none;
+            margin-right: 10px;
+            margin-left: 30px;
+        }
+
+        .search__button {
+            height: 40px;
+            width: 40px;
+            color: white;
+            background-color: #F88C2A;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        /* start movie banner */
+        .movie__banner {
+            width: 100%;
+            height: 427px;
+            background-image: url('./../images/img_21.jpg');
+            padding: 0px 113px;
+        }
+
+        .movie__poster {
+            width: 264px;
+            height: 396px;
+        }
+
+        .top-136 {
+            top: 136px;
+        }
+
+        /* end banner */
+
+        .custom__container {
+            max-width: 1170px;
+            margin: 0 auto;
+        }
+
+        .content {
+            margin-top: 80px;
+        }
+
+        .content h2 {
+            font-size: 30px;
+            line-height: 42px;
+            color: #666666;
+            font-weight: 700;
+        }
+
+        .content .active {
+            color: #F88C2A;
+        }
+
+        .content .content__options {
+            display: flex;
+        }
+
+        .content__options--select {
+            width: 180px;
+            padding: 5px 16px;
+            border: 2px solid #dddddd;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 20px;
+            margin-left: 10px;
+        }
+
+        /* start movie grid */
+        .movie__grid {
+            margin-top: 24px;
+        }
+
+        .movie__grid--item {
+            margin-bottom: 50px;
+        }
+
+        .movie__grid img {
+            width: 204px;
+            height: 309px;
+        }
+
+        .movie__title {
+            font-size: 20px;
+            line-height: 20px;
+            font-weight: 700;
+        }
+
+        /* end movie grid */
+
+        .h-514 {
+            height: 514px;
+        }
+
+        .bg-info {
+            background: rgba(196, 196, 196, 0.1);
+        }
+
+        .bg-F88C2A {
+            background-color: #F88C2A;
+        }
+
+        .text-F88C2A {
+            color: #F88C2A;
+        }
+        .text-666666 {
+            color: #666666;
+        }
+        .custom_textarea{
+            width: 1140px;
+            height: 174px;
+            border: 1px solid #DBDBDB;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="h-screen">
+
+        <!-- start header -->
+        <header class="w-full bg-white">
+            <div class="container mx-auto py-3">
+
+                <!-- start logo -->
+                <div class="flex justify-between items-center">
+                    <div class="flex">
+                        <img src="./../images/img_66.png"
+                            alt="logo" />
+                        <div class="search">
+                            <input class="search__input"
+                                type="text"
+                                name="search"
+                                placeholder="Search movie..."
+                                id="">
+                            <button class="search__button">GO</button>
+                        </div>
+                    </div>
+                    <ul class="nav__link">
+                        <li class="active">
+                            HOME
+                        </li>
+                        <li>
+                            MOVIE LAYOUT
+                        </li>
+                        <li>
+                            PAGE SINGLE
+                        </li>
+                        <li>
+                            SHOWTIME
+                        </li>
+                        <li>
+                            BOOK TICKET
+                        </li>
+                    </ul>
+                </div>
+                <!-- end logo -->
+
+
+            </div>
+        </header>
+        <!-- end header -->
+
+        <!-- start banner -->
+        <div class="movie__banner">
+
+            <div class="flex w-full pt-10">
+                <!-- start poster -->
+                <div class="movie__poster overflow-hidden rounded-md">
+                    <img src="./../images/img_19-1.jpg"
+                        alt="">
+                </div>
+                <!-- end poster -->
+
+                <!-- start info -->
+                <div class="w-full bg-info px-8 py-5 ml-10">
+                    <span class="font-bold text-white text-3xl leading-7">
+                        Brotherhood
+                    </span>
+                    <div class="mt-2">
+                        <span class="font-bold text-base text-white bg-F88C2A px-2 py-1 rounded-md"> G</span>
+                        <span class="font-bold text-F88C2A">02 hours 10 minutes</span>
+                    </div>
+
+                    <div class="mt-6 text-white flex">
+                        <div>
+                            <p class="text-base font-bold">Actor:</p>
+                            <p class="text-base font-bold">Director:</p>
+                            <p class="text-base font-bold">Genre:</p>
+                            <p class="text-base font-bold">Release:</p>
+                            <p class="text-base font-bold">Language:</p>
+                            <p class="text-base font-bold">IMDB Rating:</p>
+                            <p class="text-base font-bold">Cinema:</p>
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-base">Alexander Cattly, Greta Garbo</p>
+                            <p class="text-base">Mae West</p>
+                            <p class="text-base">Western</p>
+                            <p class="text-base">June 12, 2017</p>
+                            <p class="text-base">English</p>
+                            <p class="text-base">8.5</p>
+                            <p class="text-base">GV Tampines,GV Plaza,GV Vatond Ketty</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end info -->
+            </div>
+
+        </div>
+        <!-- end banner -->
+
+        <div class="max-w-5xl mx-auto p-4 bg-white mt-10 ">
+            <p class="text-F88C2A font-bold text-4xl">Synopsis</p>
+
+            <div class="mt-6 text-666666 text-sm mb-10">
+                <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    totam
+                    rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                    explicabo.
+                </p>
+                <p class="mt-2">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    totam
+                    rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                    explicabo.
+                </p>
+                <p class="mt-2">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    totam
+                    rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                    explicabo.
+                </p>
+            </div>
+        </div>
+       
+        <div class="max-w-5xl mx-auto p-4 bg-white ">
+            <p class="text-F88C2A font-bold text-4xl">WRITE A REVIEW</p>
+            <div>
+                <p class="text-sm text-666666">Review *</p>
+                <textarea class="custom_textarea mt-2" name="" id="" cols="30" rows="10"></textarea>
+            </div>
+
+            <button class="bg-F88C2A py-3 px-6 text-white font-bold text-base rounded-md">POST REVIEW</button>
+        </div>
+
+        <!-- start footer section -->
+        <div class="w-full bg-gray-900">
+            <div class="container py-8 text-center">
+                <span class="text-gray-500">
+                    <p></p> copyright 2020 Zen Movie
+                </span>
+            </div>
+
+        </div>
+        <!-- end footer section -->
+
+    </div>
+
+</body>
+
+</html>

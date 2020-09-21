@@ -30,11 +30,14 @@ export const getWatchlist = createSelector(
     }
 );
 
-
-
 export const getMovie = createSelector(
     getMoviesState,
     fromMovie.getMovieEntitiy
+);
+
+export const getMoviesPaged = createSelector(
+    getMoviesState,
+    fromMovie.getMoviePaged
 );
 
 export const getMoviesLoaded = createSelector(

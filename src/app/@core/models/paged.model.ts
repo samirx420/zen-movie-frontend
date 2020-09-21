@@ -1,4 +1,4 @@
-export interface paged {
+export interface Paged {
   page?       : number;
   pageSize?   : number;
   rowCount?   : number;

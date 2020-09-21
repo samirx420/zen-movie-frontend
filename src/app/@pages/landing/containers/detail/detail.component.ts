@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
+// MODELS
+import { Movie } from 'src/app/@core/models/movie.model';
 // STORES
 import { Store } from '@ngrx/store';
 import * as fromMovieStore from '../../../../@store/movie-store';
-import { Movie } from 'src/app/@core/models/movie.model';
-import { Observable } from 'rxjs';
+import * as fromReviewStore from '../../../../@store/review-store';
+
+// SERVICES
 import { AuthService } from 'src/app/@core/services';
+import { Paged } from 'src/app/@core/models/paged.model';
+import { Review } from 'src/app/@core/models/review.model';
 
 @Component({
   selector: 'app-detail',
@@ -17,27 +23,37 @@ export class DetailComponent implements OnInit {
 
   id: number;
   user$   : any;
-
+  
+  review: string;
+  
   movie$: Observable<Movie> ;
+  reviews$: Observable<Review[]> ;
+  
+  paged: Paged = {
+    page    : 1,
+    pageSize: 10
+  }
 
   constructor(
-    private route: ActivatedRoute,
-    private movieStore: Store<fromMovieStore.MovieState>,
+    private route      : ActivatedRoute,
+    private movieStore : Store<fromMovieStore.MovieState>,
+    private reviewStore: Store<fromReviewStore.ReviewState>,
     private authService: AuthService,
-    private router: Router,
-    ) { }
+    private router     : Router,
+  ) { }
 
   ngOnInit() {
     // DISPATCHERS
     this.user$ = this.authService.currentUserValue;
     this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
-      // In a real app: dispatch action to load the details here.
       this.movieStore.dispatch(fromMovieStore.LoadMovieDetail({movieId: this.id}));
+      this.reviewStore.dispatch(fromReviewStore.LoadReviewByMovie({movieId: this.id, payload: this.paged}));
     });
 
     // SELECTORS
     this.movie$ = this.movieStore.select(fromMovieStore.getMovie);
+    this.reviews$ = this.reviewStore.select(fromReviewStore.getReviews);
   }
 
   
@@ -48,14 +64,20 @@ export class DetailComponent implements OnInit {
       return;
     }
     this.movieStore.dispatch(fromMovieStore.AddToWatchlist({ payload: event }));
-    // event = {...event, is_in_watchlist: true};
-    // this.movieStore.dispatch(fromMovieStore.UpdateMovieSuccess({ payload: event }));
   }
   
   removeFromWatchList(event: Movie){
     this.movieStore.dispatch(fromMovieStore.RemoveFromWatchlist({ payload: event }));
-    // event = {...event, is_in_watchlist: false};
-    // this.movieStore.dispatch(fromMovieStore.UpdateMovieSuccess({ payload: event }));
+  }
+
+  postReview(){
+    let payload_review = {
+      movie_id: this.id,
+      review: this.review
+    }
+    console.log(payload_review);
+    this.reviewStore.dispatch(fromReviewStore.CreateReview({ payload: payload_review }));
+    this.review = '';
   }
 
 }

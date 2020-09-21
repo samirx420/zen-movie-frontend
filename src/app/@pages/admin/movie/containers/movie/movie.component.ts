@@ -5,13 +5,13 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // MODELS
-import { paged } from 'src/app/@core/models/paged.model';
 import { Movie } from 'src/app/@core/models/movie.model';
 
 // STORES
 import { Store } from '@ngrx/store';
 import * as fromMovieStore from '../../../../../@store/movie-store';
 import * as fromWatchlistStore from '../../../../../@store/watchlist-store';
+import { Paged } from 'src/app/@core/models/paged.model';
 
 @Component({
   selector: 'app-movie',
@@ -20,7 +20,7 @@ import * as fromWatchlistStore from '../../../../../@store/watchlist-store';
 })
 export class MovieComponent implements OnInit {
   movies$ : Movie[];
-  paged$  : Observable<paged>;
+  paged$  : Observable<Paged>;
   loading$: Observable<boolean>;
   
   visible   : boolean = false;
@@ -28,7 +28,7 @@ export class MovieComponent implements OnInit {
   isEdit    : boolean;
   showDetail: boolean;
 
-  paged: paged = {
+  paged: Paged = {
     page    : 1,
     pageSize: 10
   }
@@ -39,10 +39,11 @@ export class MovieComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.movieStore.dispatch(fromMovieStore.LoadMovie());
+    this.movieStore.dispatch(fromMovieStore.LoadMovie({payload:this.paged}));
 
     // this.movies$  = 
     this.movieStore.select(fromMovieStore.getMovies).subscribe(x => this.movies$ = x);
+    this.paged$ = this.movieStore.select(fromMovieStore.getMoviesPaged);
     this.loading$ = this.movieStore.select(fromMovieStore.getMoviesLoading);
   }
 

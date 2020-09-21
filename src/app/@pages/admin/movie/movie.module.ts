@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+
+
 // CONTAINERS
 import * as fromContainers from './containers';
 
 // COMPONENTS
 import * as fromComponents from './components';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 // STORES
 import { MovieStoreModule } from 'src/app/@store/movie-store/movie-store.module';
@@ -24,6 +27,7 @@ export const ROUTES: Routes = [
     CommonModule,
     ReactiveFormsModule,
     NzDrawerModule,
+    NzPaginationModule,
     RouterModule.forChild(ROUTES),
     MovieStoreModule
   ],

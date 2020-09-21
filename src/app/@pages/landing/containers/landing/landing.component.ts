@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 // MODELS
-import { paged } from 'src/app/@core/models/paged.model';
 import { Movie } from 'src/app/@core/models/movie.model';
 import { Watchlist } from 'src/app/@core/models/watchlist.model';
 
@@ -16,6 +15,7 @@ import { AuthService } from 'src/app/@core/services';
 import { Store } from '@ngrx/store';
 import * as fromMovieStore from '../../../../@store/movie-store';
 import * as fromWatchlistStore from '../../../../@store/watchlist-store';
+import { Paged } from 'src/app/@core/models/paged.model';
 
 @Component({
   selector   : 'app-landing',
@@ -25,11 +25,11 @@ import * as fromWatchlistStore from '../../../../@store/watchlist-store';
 export class LandingComponent implements OnInit {
 
   movies$ : Movie[];
-  paged$  : Observable<paged>;
+  paged$  : Observable<Paged>;
   loading$: Observable<boolean>;
   user$   : any;
 
-  paged: paged = {
+  paged: Paged = {
     page    : 1,
     pageSize: 10
   }
@@ -44,7 +44,7 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     this.user$ = this.authService.currentUserValue;
 
-    this.movieStore.dispatch(fromMovieStore.LoadMovie());
+    this.movieStore.dispatch(fromMovieStore.LoadMovie({payload: this.paged}));
 
     // this.movies$  = 
     this.movieStore.select(fromMovieStore.getMovies).subscribe(x => this.movies$ = x);

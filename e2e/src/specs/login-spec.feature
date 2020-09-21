@@ -1,7 +1,7 @@
-Feature: Increment the counter
-    This feature lets a user increment the counter by clicking on the button.
+Feature: Login Feature
+    This feature lets a user to login to the system.
 
-Scenario: Basic increment scenario
+Scenario: Basic login scenario
     Given I am on the login page
     When I fill username input with "puzansakya"
     When I fill password input with "password"

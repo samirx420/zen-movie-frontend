@@ -1,3 +1,4 @@
+
 <!-- <div>
   <p class="inline-block">
     {{movie.title}}
@@ -9,11 +10,12 @@
 </div> -->
 <div class="p-4 w-full">
   <a class="block relative h-48 rounded overflow-hidden">
-    <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://image.tmdb.org/t/p/w300/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+    <img *ngIf="!movie.poster_path" alt="ecommerce" class="object-cover object-center w-full h-full block" src="https://image.tmdb.org/t/p/w300/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+    <img *ngIf="movie.poster_path" alt="ecommerce" class="object-cover object-center w-full h-full block" src="http://localhost:3000/{{movie.poster_path}}">
   </a>
   <div class="mt-4">
     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">Crime, Drama, Thriller</h3>
-    <h2 class="text-gray-900 title-font text-lg font-medium cursor-pointer" [routerLink]="['/movie', movie.id]">{{movie.title}}</h2>
+    <h2 class="text-gray-900 title-font text-lg font-medium cursor-pointer movie__title" [routerLink]="['/movie', movie.id]">{{movie.title}}</h2>
     <div class="flex mt-1 justify-between">
       <p class="">8.9</p>
       <button class="px-2 py-1 bg-red-200 hover:bg-red-300 focused:outline-none rounded text-sm" (click)="_editClick(movie)">Edit</button>
